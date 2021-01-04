@@ -41,17 +41,3 @@
   (-> lob
       (update ::asks f)
       (update ::bids f)))
-
-
-(comment
-  (require '[dev.jt.lob :as lob])
-  (def t1 (java.time.Instant/now))
-  (def lob1 (-> (lob/empty-lob)
-                (lob/insert ::lob/asks 100M  123 (.plusSeconds t1 1) 1.00)
-                (lob/insert ::lob/asks 100M  222 (.plusSeconds t1 2) 4.00)
-                (lob/insert ::lob/asks 100M  244 (.plusSeconds t1 3) 0.45)
-                (lob/insert ::lob/asks 101M  555 (.plusSeconds t1 4) 1.00)
-                (lob/insert ::lob/bids 99M   456 (.plusSeconds t1 5) 1.00)
-                (lob/insert ::lob/bids 99M   789 (.plusSeconds t1 6) 1.02)
-                (lob/delete ::lob/bids 99M   789)
-                (lob/insert ::lob/bids 97M   999 (.plusSeconds t1 7) 5.0))))
